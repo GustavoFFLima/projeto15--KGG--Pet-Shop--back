@@ -5,6 +5,6 @@ const authRouter = Router()
 
 // Rotas de autenticação
 authRouter.post("/cadastro", signUp)
-authRouter.post("/", signIn)
+authRouter.post("/login", signIn)
 
 export default authRouter
