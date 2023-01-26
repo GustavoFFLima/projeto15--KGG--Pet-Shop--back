@@ -8,6 +8,7 @@ app.use(cors())
 
 app.use( [ authRouter ] )
 
-app.listen(5000, () => {
-  console.log('Servidor iniciou!!!')
+const PORT = 5000
+app.listen(PORT, () => {
+  console.log(`Server running in port: ${PORT}`)
 })

@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt"
 import { v4 as uuidV4 } from "uuid"
-import db from "../config/database.js"
 import { usuarioSchema } from "../model/AuthSchema.js"
-
+import { usuarioCollection } from "../config/database.js"
+import { sessaoCollection } from "../config/database.js"
 
 export async function signUp (req, res) {
     const { name, email, password, confirmPassword } = req.body
@@ -17,7 +17,7 @@ export async function signUp (req, res) {
     const passwordHashed = bcrypt.hashSync(password, 10)
 
     try {
-        await db.collection("usuarios").insertOne({ name, email, password: passwordHashed })
+        await usuarioCollection.insertOne({ name, email, password: passwordHashed })
         res.status(201).send("Usuário cadastrado com sucesso!")
 
     } catch (error) {
@@ -30,7 +30,7 @@ export async function signIn (req, res) {
 
     try {
 
-        const checkUser = await db.collection('usuarios').findOne({ email })
+        const checkUser = await usuarioCollection.findOne({ email })
 
         if (!checkUser) return res.status(400).send("Usuário ou senha incorretos")
 
@@ -40,7 +40,7 @@ export async function signIn (req, res) {
 
         const token = uuidV4();
 
-        await db.collection("sessoes").insertOne({ idUsuario: checkUser._id, token })
+        await sessaoCollection.insertOne({ idUsuario: checkUser._id, token })
 
         return res.status(200).send(token)
 
