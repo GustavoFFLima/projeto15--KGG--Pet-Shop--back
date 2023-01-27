@@ -15,3 +15,8 @@ const db = mongoClient.db()
 export const carrinhoCollection = db.collection('carrinho')
 export const usuarioCollection = db.collection('usuarios');
 export const sessaoCollection = db.collection("sessoes")
+// export const servicosCollection = db.collection("servicos")
+// export const produtosCollection = db.collection("produtos")
+
+
+
