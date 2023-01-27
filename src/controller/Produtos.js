@@ -1,11 +1,11 @@
-import { db } from "../db/db.js";
+import { servicosCollection, produtosCollection } from "../config/database.js";
 
 
 export async function getProdutos (req, res) {
     
          try {
  
-       const produtinhos = await db.collection("produtos").toArray();
+       const produtinhos = await produtosCollection.toArray();
  
        if (!produtinhos) return res.sendStatus(401);
        
@@ -21,7 +21,7 @@ export async function getProdutos (req, res) {
     
     try {
 
-  const servicosPet = await db.collection("servicos").toArray();
+  const servicosPet = await servicosCollection.toArray();
 
   if (!servicosPet) return res.sendStatus(401);
   
