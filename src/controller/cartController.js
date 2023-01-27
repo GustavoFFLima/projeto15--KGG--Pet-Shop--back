@@ -1,6 +1,6 @@
-import { sessaoCollection } from "../config/database";
-import { usuarioCollection } from "../config/database";
-import { carrinhoCollection } from "../config/database";
+import { sessaoCollection } from "../config/database.js";
+import { usuarioCollection } from "../config/database.js";
+import { carrinhoCollection } from "../config/database.js";
 
 export async function postCart(req, res) {
     const { authorization } = req.headers;
